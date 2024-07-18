@@ -1,74 +1,81 @@
-let lenis;
-let percentage;
-
-const progressBar = {
-  element: document.querySelector('.section_bar'),
-  line: document.querySelector('.section_bar_line_filled'),
-  dots: document.querySelectorAll('.section_bar_line_dot'),
-  labels: document.querySelectorAll('.section_bar_label_item'),
-};
-
-const progressBarOffset =
-  (progressBar.element.getBoundingClientRect().left / window.innerWidth) * 100;
-
-const video = document.querySelector('.section_bg_video');
-
-const isMobile = window.matchMedia('(max-width: 768px)').matches;
-
-const initLenis = () => {
-  lenis = new Lenis({
-    lerp: 0.05,
-    smoothWheel: true,
-    WheelMultiplier: 1,
-    smoothTouch: true,
-    touchMultiplier: 2,
-
-    content: document.querySelector('.section_content'),
-    orientation: isMobile ? 'vertical' : 'horizontal',
-  });
-
-  lenis.on('scroll', ({ scroll, limit }) => progress(scroll, limit));
-
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
+class ScrollProgress {
+  constructor() {
+    this.lenis = null;
+    this.percentage = 0;
+    this.progressBar = {
+      element: document.querySelector('.timeline-indicator'),
+      line: document.querySelector('.timeline-progress__fill'),
+      dots: document.querySelectorAll('.timeline-dot'),
+      labels: document.querySelectorAll('.timeline-indicator-label'),
+    };
+    this.progressBarOffset =
+      (this.progressBar.element.getBoundingClientRect().left /
+        window.innerWidth) *
+      100;
+    this.video = document.querySelector('.video');
+    this.isMobile = window.matchMedia('(max-width: 768px)').matches;
+    this.init();
   }
 
-  requestAnimationFrame(raf);
-};
-
-const activeKeyPoints = (keypoints, element) => {
-  if (percentage >= keypoints) {
-    element.classList.add('--active');
-  } else {
-    element.classList.remove('--active');
+  init() {
+    this.initLenis();
+    this.lenis.scrollTo(0);
+    this.video.play();
+    window.addEventListener('DOMContentLoaded', this.initLenis.bind(this));
   }
-};
 
-const progress = (scroll, limit) => {
-  let keypoints = [];
-  let scrollPercentage = (scroll / limit) * 100;
+  initLenis() {
+    this.lenis = new Lenis({
+      lerp: 0.05,
+      smoothWheel: true,
+      WheelMultiplier: 1,
+      smoothTouch: true,
+      touchMultiplier: 2,
+      content: document.querySelector('.content'),
+      orientation: this.isMobile ? 'vertical' : 'horizontal',
+    });
 
-  progressBar.dots.forEach((dot) => {
-    const dotPosition = dot.getBoundingClientRect().left;
-    const keypointsPercentage =
-      ((dotPosition - progressBarOffset) / window.innerWidth) * 100;
+    this.lenis.on('scroll', ({ scroll, limit }) =>
+      this.progress(scroll, limit)
+    );
+    requestAnimationFrame(this.raf.bind(this));
+  }
 
-    keypoints.push(keypointsPercentage);
-  });
+  raf(time) {
+    this.lenis.raf(time);
+    requestAnimationFrame(this.raf.bind(this));
+  }
 
-  percentage = keypoints[0] + (scrollPercentage * (100 - keypoints[0])) / 100;
-  progressBar.line.style.width = `${percentage}%`;
-  progressBar.dots.forEach((dot, index) =>
-    activeKeyPoints(keypoints[index], dot)
-  );
-  progressBar.labels.forEach((label, index) =>
-    activeKeyPoints(keypoints[index], label)
-  );
-};
+  activeKeyPoints(keypoints, element) {
+    if (this.percentage >= keypoints) {
+      element.classList.add('--active');
+    } else {
+      element.classList.remove('--active');
+    }
+  }
 
-window.addEventListener('DOMContentLoaded', () => {
-  initLenis();
-  lenis.scrollTo(0);
-  video.play();
-});
+  progress(scroll, limit) {
+    let keypoints = [];
+    let scrollPercentage = (scroll / limit) * 100;
+
+    this.progressBar.dots.forEach((dot) => {
+      const dotPosition = dot.getBoundingClientRect().left;
+      const keypointsPercentage =
+        ((dotPosition - this.progressBarOffset) / window.innerWidth) * 100;
+
+      keypoints.push(keypointsPercentage);
+    });
+
+    this.percentage =
+      keypoints[0] + (scrollPercentage * (100 - keypoints[0])) / 100;
+    this.progressBar.line.style.width = `${this.percentage}%`;
+    this.progressBar.dots.forEach((dot, index) =>
+      this.activeKeyPoints(keypoints[index], dot)
+    );
+    this.progressBar.labels.forEach((label, index) =>
+      this.activeKeyPoints(keypoints[index], label)
+    );
+  }
+}
+
+new ScrollProgress();

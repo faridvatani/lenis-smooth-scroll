@@ -10,92 +10,85 @@
   </head>
   <body>
     <main class="app">
-      <section>
-        <div class="wrapper">
-          <div class="section_content">
-            <div class="section_content_item">
-              <span>&#x26AC; 1995</span>
-              <h1 class="section_content_item_title">Our heritage</h1>
-              <p class="section_content_item_text">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged.
-              </p>
-            </div>
-            <div class="section_content_item">
-              <span>&#x26AC; 2012</span>
-              <h1 class="section_content_item_title">Start of manufacturing</h1>
-              <p class="section_content_item_text">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged.
-              </p>
-            </div>
-            <div class="section_content_item">
-              <span>&#x26AC; 2014</span>
-              <h1 class="section_content_item_title">Time for growth</h1>
-              <p class="section_content_item_text">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged.
-              </p>
-            </div>
-            <div class="section_content_item">
-              <span>&#x26AC; 2024</span>
-              <h1 class="section_content_item_title">Current time</h1>
-              <p class="section_content_item_text">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged.
-              </p>
-            </div>
+      <section class="wrapper">
+        <div class="content">
+          <article class="timeline-event">
+            <time datetime="1995">&#x26AC; 1995</time>
+            <h1 class="title">Our heritage</h1>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged.
+            </p>
+          </article>
+          <article class="timeline-event">
+            <time datetime="2012">&#x26AC; 2012</time>
+            <h1 class="title">Start of manufacturing</h1>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged.
+            </p>
+          </article>
+          <article class="timeline-event">
+            <time datetime="2014">&#x26AC; 2014</time>
+            <h1 class="title">Time for growth</h1>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged.
+            </p>
+          </article>
+          <article class="timeline-event">
+            <time datetime="2024">&#x26AC; 2024</time>
+            <h1 class="title">Current time</h1>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged.
+            </p>
+          </article>
+        </div>
+        <div class="timeline-indicator">
+          <div class="timeline-indicator-label grid">
+            <span class="timeline-label">1995 &#x26AC; Our heritage</span>
+            <span class="timeline-label"
+              >2012 &#x26AC; Start of manufacturing</span
+            >
+            <span class="timeline-label">2014 &#x26AC; Time for growth</span>
+
+            <span class="timeline-label">2024 &#x26AC; Current time</span>
           </div>
-          <div class="section_bar">
-            <div class="section_bar_label grid">
-              <div class="section_bar_label_item">
-                <span>1995 &#x26AC; Our heritage</span>
-              </div>
-              <div class="section_bar_label_item">
-                <span>2012 &#x26AC; Start of manufacturing</span>
-              </div>
-              <div class="section_bar_label_item">
-                <span>2014 &#x26AC; Time for growth</span>
-              </div>
-              <div class="section_bar_label_item">
-                <span>2024 &#x26AC; Current time</span>
-              </div>
-            </div>
 
-            <div class="section_bar_dots grid">
-              <div class="section_bar_line_dot"></div>
-              <div class="section_bar_line_dot"></div>
-              <div class="section_bar_line_dot"></div>
-              <div class="section_bar_line_dot"></div>
-            </div>
+          <div class="grid">
+            <div class="timeline-dot"></div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-dot"></div>
+          </div>
 
-            <div class="section_bar_line">
-              <div class="section_bar_line_empty"></div>
-              <div class="section_bar_line_filled"></div>
-            </div>
+          <div class="timeline-progress">
+            <div class="timeline-progress__track"></div>
+            <div class="timeline-progress__fill"></div>
           </div>
         </div>
 
         <div class="section_bg">
           <video
             src="assets/media/video.mp4"
-            class="section_bg_video"
+            class="video"
             loop
             muted
             autoplay

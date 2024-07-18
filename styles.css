@@ -1,3 +1,8 @@
+:root {
+  --primary: #000000;
+  --secondary: #dfdfdf;
+}
+
 *,
 *:before,
 *:after {
@@ -6,11 +11,6 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-}
-
-:root {
-  --primary: #000000;
-  --secondary: #dfdfdf;
 }
 
 @font-face {
@@ -36,11 +36,17 @@ body {
   width: none;
 }
 
+::selection {
+  background-color: var(--secondary);
+  color: var(--primary);
+}
+
 h1 {
   font-size: 8rem;
   text-transform: uppercase;
 }
 
+time,
 span,
 p {
   font-family: 'Primary';
@@ -70,6 +76,7 @@ html.lenis body {
   pointer-events: none;
 }
 
+/* Section Styles */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1.2fr) 2fr;
@@ -92,46 +99,49 @@ section {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  object-fit: cover;
   z-index: -1;
 }
 
-.section_bg_video {
+.video {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.section_content {
+.content {
   display: flex;
   align-items: center;
 }
 
-.section_content_item {
+.timeline-event {
   width: 100vw;
   padding-right: 120rem;
 }
 
-.section_content_item_title {
+.title {
   margin-bottom: 3.2rem;
 }
 
-.section_bar {
+.timeline-indicator {
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
-  padding: 6.4rem 3.2rem;
+  padding: 2rem 3.2rem;
   z-index: 10;
 }
 
-.section_bar_label {
-  margin-bottom: 2.4rem;
+.timeline-indicator-label {
+  margin-bottom: 2rem;
 }
 
-.section_bar_label_item {
-  padding: 2rem;
+.timeline-label {
+  font-size: 1.8rem;
+  padding: 1.5rem;
   justify-self: center;
   border-radius: 1rem;
   border: 1px solid #dfdfdf;
@@ -140,17 +150,17 @@ section {
   transition: background-color 0.64s ease-out, color 0.64s ease-out;
 }
 
-.section_bar_label_item.--active {
+.timeline-label.--active {
   background-color: var(--secondary);
   color: var(--primary);
   transition: background-color 0.64s ease-out, color 0.64s ease-out;
 }
 
-.section_bar_label_item:last-child {
+.timeline-label:last-child {
   justify-self: end;
 }
 
-.section_bar_line_dot {
+.timeline-dot {
   width: 1.6rem;
   height: 1.5rem;
   border-radius: 50%;
@@ -161,18 +171,18 @@ section {
   z-index: 20;
 }
 
-.section_bar_line_dot.--active {
+.timeline-dot.--active {
   scale: 1;
   transition: scale 0.48s ease-out;
 }
 
-.section_bar_line_dot:last-child {
+.timeline-dot:last-child {
   justify-self: end;
   margin-right: 9.6rem;
 }
 
-/* Bar Styles */
-.section_bar_line {
+/* Timeline Progress Styles */
+.timeline-progress {
   position: absolute;
   left: 0;
   bottom: 0.8rem;
@@ -181,8 +191,8 @@ section {
   z-index: -1;
 }
 
-.section_bar_line_filled,
-.section_bar_line_empty {
+.timeline-progress__track,
+.timeline-progress__fill {
   position: absolute;
   top: 50%;
   left: 0;
@@ -192,7 +202,7 @@ section {
   z-index: 100;
 }
 
-.section_bar_line_empty {
+.timeline-progress__track {
   width: 100%;
   opacity: 0.2;
 }
@@ -203,9 +213,13 @@ section {
     font-size: calc(100vw / 768 * 10);
   }
 
+  h1 {
+    font-size: 2.5rem;
+  }
+
   span,
   p {
-    font-size: 2.4rem;
+    font-size: 2rem;
   }
 
   .wrapper {
@@ -213,25 +227,62 @@ section {
     padding-top: 16rem;
   }
 
-  .section_content {
+  .content {
     flex-direction: column;
   }
 
-  .section_content_item {
-    width: 100%;
-    height: 100%;
+  .timeline-event {
+    width: auto;
+    height: 100vh;
     padding-right: 0;
   }
 
-  .section_bar {
+  .timeline-indicator {
     background-color: var(--primary);
   }
 
-  .section_bar_label_item {
+  .timeline-label {
     padding: 1rem;
   }
 
-  .section_bar_line_dot:last-child {
-    margin-right: 4.8rem;
+  .timeline-dot:last-child {
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  html {
+    font-size: calc(100vw / 480 * 10);
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  span,
+  p {
+    font-size: 1.5rem;
+  }
+
+  .wrapper {
+    padding-top: 12rem;
+  }
+
+  .timeline-indicator {
+    padding: 1rem 2rem;
+  }
+
+  .timeline-label {
+    font-size: 1.6rem;
+    padding: 0.8rem;
+  }
+
+  .timeline-dot {
+    width: 1.2rem;
+    height: 1.1rem;
+  }
+
+  .timeline-dot:last-child {
+    margin-right: 0;
   }
 }
